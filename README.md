@@ -149,3 +149,70 @@ The system is tested on real and synthetic datasets to assess:
 - Execution time: The scalability of the fuzzy logic approach is evaluated by measuring execution time over different dataset sizes.
 - Predictive accuracy: LSTM-based models are used to compare predicted trust scores with original computed scores to validate forecasting ability.
 
+
+## **Results and Discussion**
+The proposed framework was evaluated on a dataset comprising 20,000 records collected from Kubernetes and OpenStack cloud platforms. Various Quality of Service (QoS) metrics such as availability, latency, throughput, autoscaling (CPU utilization), and response time were analyzed.
+
+The results demonstrate the effectiveness of integrating blockchain-based audit scores, Proof of Stake (PoS) consensus, and fuzzy logic for dynamic trust evaluation. The following subsections describe the experimental setup, trust score computation, comparative analysis, and predictive evaluation in detail.  
+
+## **Experimental Setup**
+The experiments were conducted using real-time datasets from Kubernetes and OpenStack. Metrics were preprocessed through normalization and imputation as necessary. The blockchain layer was simulated using Ganache and smart contracts developed in Solidity were deployed to handle autoscaling data and audit score storage.
+
+The fuzzy inference system was implemented in Python using libraries such as NumPy and SciPy. Gaussian membership functions were used to evaluate metric uncertainties, and a rule-based system was defined to assign trust scores.  
+
+## **Trust Score Calculation**
+Trust scores for each cloud service provider (CSP) were computed using the fuzzy logic-based approach.
+<p align="center">
+  <img src="f3.png" alt="Openstack" width="50%"/>
+</p>
+<p align="center">
+  <img src="f4.png" alt="Kubernetes" width="50%"/>
+</p>
+
+## **Comparison of Fuzzy and Non-Fuzzy Approaches**
+The fuzzy logic-based model was compared against a traditional non-fuzzy approach where trust scores were computed using a weighted sum of normalized metrics without accounting for uncertainty.  
+<p align="center">
+  <img src="f5.png" alt="comparison" width="50%"/>
+</p>
+
+- Fuzzy Approach: Provided smooth transitions in trust scores, allowing for more flexible and realistic trust evaluation under varying network and performance conditions.
+- Non-Fuzzy Approach: Resulted in rigid, deterministic trust scores lacking adaptability to minor fluctuations and uncertainties in real-time data.
+A histogram of trust score distributions showed that the fuzzy model had a wider and smoother spread, capturing different levels of CSP reliability more effectively.
+
+## **Execution Time Analysis**
+An analysis of execution time for both fuzzy and non-fuzzy models over varying dataset sizes demonstrated that the fuzzy model maintained lower and stable execution times as data volume increased.  
+<p align="center">
+  <img src="f6.png" alt="Execution Time" width="50%"/>
+</p>  
+This indicates superior scalability and efficiency, making it suitable for real-world large-scale multi-cloud environments.  
+
+## **Predicted vs Original Trust Scores**
+To evaluate predictive accuracy, an LSTM-based model was used to forecast trust scores based on input QoS metrics.
+
+**OpenStack**
+- Original Scores: Ranged widely between approximately 0.25 and 0.60, reflecting real operational variations.
+- Predicted Scores: Tended to cluster around 0.45, failing to fully capture extreme values and outliers.
+  <p align="center">
+  <img src="f7.png" alt="Com_Openstack""/>
+</p>   
+
+**Kubernetes**
+- Original Scores: Showed higher variability, including scores above 0.8 and as low as 0.2.
+- Predicted Scores: Overpredicted low trust cases and underpredicted high trust cases, resulting in a more compressed range.
+<p align="center">
+  <img src="f8.png" alt="Com_Kubernetes"/>
+</p>  
+
+These observations highlight the need for enhancing predictive model sensitivity to better represent real-world dynamics.
+
+
+## **Overall Discussion**
+The experimental results validate that the proposed framework successfully integrates blockchain-based transparent storage, energy-efficient PoS consensus, and adaptive fuzzy logic to improve SLA management in multi-cloud environments.  
+
+- The fuzzy approach excels at handling uncertainties inherent in cloud performance metrics.  
+- The use of PoS ensures fair and secure storage of critical autoscaling data with lower energy consumption.  
+- Trust scores computed using this hybrid approach provide a strong basis for selecting the most reliable cloud service providers.  
+
+
+## **Summary**
+The results confirm the effectiveness and practical feasibility of the proposed framework. The system offers an advanced, trustworthy, and scalable solution for SLA evaluation and CSP selection, promoting transparency and efficiency in multi-cloud service environments.
